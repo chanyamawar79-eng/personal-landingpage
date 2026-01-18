@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chanya — Creative Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary-blue: #88A2FF;
+      --lime: #E3FC87;
+      --deep-blue: #253A82;
+      --pink: #FFB2F7;
+      --light-blue: #C0E0FF;
+      --lavender: #AB9DFF;
+      --hot-pink: #E84797;
+    }
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    
+    .font-sora {
+      font-family: 'Sora', sans-serif;
+    }
+    
+    .font-space {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    /* Gradient background */
+    .gradient-bg {
+      background: 
+        linear-gradient(180deg, 
+          #253A82 0%, 
+          #1e2f6b 25%,
+          #192654 50%,
+          #1e2f6b 75%,
+          #253A82 100%
+        );
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .gradient-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse 800px 600px at 10% 20%, rgba(136, 162, 255, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 600px 500px at 90% 40%, rgba(171, 157, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 700px 700px at 50% 60%, rgba(255, 178, 247, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 500px 400px at 80% 90%, rgba(227, 252, 135, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 400px 600px at 20% 80%, rgba(232, 71, 151, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+      animation: gradientShift 15s ease-in-out infinite;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+    
+    /* Floating shapes */
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+    
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(30px) rotate(-5deg); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.1); }
+    }
+    
+    /* Fade in animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .animate-fade-in-left {
+      animation: fadeInLeft 0.8s ease-out forwards;
+    }
+    
+    .animate-fade-in-right {
+      animation: fadeInRight 0.8s ease-out forwards;
+    }
+    
+    .animate-scale-in {
+      animation: scaleIn 0.6s ease-out forwards;
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-600 { animation-delay: 0.6s; }
+    
+    /* Button hover effect */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-glow:hover::before {
+      left: 100%;
+    }
+    
+    .btn-glow:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(227, 252, 135, 0.4);
+    }
+    
+    /* Card hover */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Glass effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Image placeholder with grain effect */
+    .image-placeholder {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #88A2FF 0%, #AB9DFF 100%);
+    }
+    
+    .image-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    
+    /* Work card with transparent blur background */
+    .work-card-placeholder {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+    }
+    
+    /* Scroll indicator */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s ease-in-out infinite;
+    }
+    
+    /* Section reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Timeline styling */
+    .timeline-line {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #88A2FF, #AB9DFF, #E84797);
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: 12px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #E3FC87;
+      border: 3px solid #253A82;
+      z-index: 10;
+    }
+    
+    /* Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    .marquee {
+      animation: marquee 20s linear infinite;
+    }
+    
+    /* Star decoration */
+    .star {
+      display: inline-block;
+      color: #E3FC87;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #253A82;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #88A2FF;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #AB9DFF;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full w-full gradient-bg font-sora text-white overflow-auto"><!-- Floating decorative shapes -->
+  <div class="floating-shape" style="width: 300px; height: 300px; background: #88A2FF; top: 10%; left: -5%; animation: float 8s ease-in-out infinite;"></div>
+  <div class="floating-shape" style="width: 200px; height: 200px; background: #FFB2F7; top: 60%; right: -5%; animation: floatReverse 10s ease-in-out infinite;"></div>
+  <div class="floating-shape" style="width: 150px; height: 150px; background: #E3FC87; bottom: 20%; left: 20%; animation: float 12s ease-in-out infinite; animation-delay: -2s;"></div>
+  <div class="floating-shape" style="width: 250px; height: 250px; background: #AB9DFF; top: 30%; right: 20%; animation: floatReverse 9s ease-in-out infinite; animation-delay: -4s;"></div>
+  <div class="relative z-10"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 glass px-6 py-4">
+    <div class="max-w-6xl mx-auto flex justify-between items-center"><a href="#" class="font-space font-bold text-xl tracking-tight" style="color: #E3FC87;"> <span class="text-white">chan</span>ya. </a>
+     <div class="hidden md:flex gap-8 text-sm font-medium"><a href="#about" class="hover:text-[#E3FC87] transition-colors">About</a> <a href="#works" class="hover:text-[#E3FC87] transition-colors">Works</a> <a href="#journey" class="hover:text-[#E3FC87] transition-colors">Journey</a> <a href="#contact" class="hover:text-[#E3FC87] transition-colors">Contact</a>
+     </div><a href="#contact" class="btn-glow px-5 py-2 rounded-full text-sm font-semibold" style="background: #E3FC87; color: #253A82;"> Say Hello! </a>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="min-h-screen flex items-center px-6 pt-24 pb-12">
+    <div class="max-w-6xl mx-auto w-full">
+     <div class="grid md:grid-cols-2 gap-12 items-center"><!-- Left Content -->
+      <div class="order-2 md:order-1">
+       <p class="text-sm font-medium tracking-widest mb-4 opacity-0 animate-fade-in-up" style="color: #E3FC87; animation-delay: 0.1s; animation-fill-mode: forwards;">✦ WELCOME TO MY SPACE</p>
+       <h1 id="hero-headline" class="font-space text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">Not Just What I Do,<br><span style="background: linear-gradient(90deg, #E3FC87, #88A2FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">But Why.</span></h1>
+       <p id="hero-subheadline" class="text-lg opacity-80 mb-8 leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 0.3s; animation-fill-mode: forwards; color: #C0E0FF;">Satu halaman untuk mengenalku, caraku berpikir, dan coretan yang kubawa di setiap karyaku.</p>
+       <div class="flex gap-4 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;"><a href="#about" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold" style="background: #E3FC87; color: #253A82;"> See What I Do 
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+         </svg></a>
+       </div>
+      </div><!-- Right Image -->
+      <div class="order-1 md:order-2 flex justify-center opacity-0 animate-scale-in" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+       <div class="relative">
+        <div class="absolute inset-0 rounded-3xl rotate-6" style="background: linear-gradient(135deg, #FFB2F7, #88A2FF); opacity: 0.5;"></div>
+        <div class="image-placeholder w-72 h-96 md:w-80 md:h-[28rem] rounded-3xl relative overflow-hidden"><img src="chanya porto.PNG" alt="Chanya" loading="lazy" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+         <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6" style="display: none; background: linear-gradient(135deg, #88A2FF 0%, #AB9DFF 100%);">
+          <svg class="w-16 h-16 mb-4 opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+          </svg>
+          <p class="text-sm opacity-70">Add your photo URL above</p>
+         </div>
+        </div><!-- Decorative elements -->
+        <div class="absolute -top-4 -right-4 w-12 h-12 rounded-full flex items-center justify-center text-2xl" style="background: #E3FC87;">
+         ✨
+        </div>
+        <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full flex items-center justify-center" style="background: #FFB2F7;"><span class="text-2xl">🌺</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Scroll Indicator -->
+     <div class="flex justify-center mt-16 scroll-indicator">
+      <div class="flex flex-col items-center gap-2 opacity-60"><span class="text-xs tracking-widest">SCROLL</span>
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+       </svg>
+      </div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto"><!-- Section Header -->
+     <div class="text-center mb-16 reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ WHO AM I</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold">In One Scroll</h2>
+     </div><!-- About Content -->
+     <div class="glass rounded-3xl p-8 md:p-12 mb-12 reveal">
+      <div class="grid md:grid-cols-3 gap-8 items-start">
+       <div class="md:col-span-1 text-center md:text-left">
+        <h3 id="about-name" class="font-space text-4xl font-bold mb-2" style="color: #E3FC87;">Chanya</h3>
+        <p id="about-tagline" class="text-sm tracking-wide opacity-80" style="color: #FFB2F7;">Creative • Organized • Detail-Oriented</p>
+       </div>
+       <div class="md:col-span-2">
+        <p class="text-lg leading-relaxed opacity-90" style="color: #C0E0FF;">Aku tertarik pada kreativitas dan estetika, bukan sekadar sebagai bentuk visual, tetapi sebagai cara berpikir dan menyampaikan nilai. Aku percaya bahwa kreativitas tumbuh dari niat, konsistensi, dan ruang yang tepat. Dengan mindset yang terbuka terhadap ide dan kolaborasi, aku menikmati proses membangun lingkungan di mana orang-orang dapat saling belajar, berbagi, dan berkembang bersama.</p>
+        <p class="mt-4 font-medium" style="color: #AB9DFF;">Bagiku, kepemimpinan bukan tentang mengarahkan, tetapi tentang menciptakan kesempatan.</p>
+       </div>
+      </div>
+     </div><!-- What I Do Cards -->
+     <h3 class="font-space text-2xl font-bold mb-8 text-center reveal">What I Do</h3>
+     <div class="grid md:grid-cols-2 gap-6 reveal"><!-- Graphic Design Card -->
+      <div class="card-hover glass rounded-2xl p-8 group cursor-pointer">
+       <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #E3FC87, #88A2FF);">
+        <svg class="w-7 h-7" style="color: #253A82;" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+        </svg>
+       </div>
+       <h4 class="font-space text-xl font-bold mb-3">Graphic Design</h4>
+       <p class="opacity-80 mb-4" style="color: #C0E0FF;">Visual, branding, creative thinking — expressing ideas through thoughtful design and aesthetic precision.</p>
+       <div class="flex items-center gap-2 text-sm font-medium" style="color: #E3FC87;"><span>@delicatestdiou</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+       </div>
+      </div><!-- Community Building Card -->
+      <div class="card-hover glass rounded-2xl p-8 group cursor-pointer">
+       <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #FFB2F7, #AB9DFF);">
+        <svg class="w-7 h-7" style="color: #253A82;" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+       </div>
+       <h4 class="font-space text-xl font-bold mb-3">Community Building</h4>
+       <p class="opacity-80 mb-4" style="color: #C0E0FF;">Leadership, collaboration, growth — creating spaces where ideas flourish and people connect.</p>
+       <div class="flex items-center gap-2 text-sm font-medium" style="color: #E3FC87;"><span>@jelajahlembar.id</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Things I Love Section -->
+   <section class="py-24 px-6 relative overflow-hidden">
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent, rgba(136, 162, 255, 0.1), transparent);"></div>
+    <div class="max-w-6xl mx-auto relative">
+     <div class="text-center mb-16 reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ MY PASSION</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold">Things I Love Working On</h2>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6 mb-16 reveal">
+      <div class="glass rounded-2xl p-8 text-center card-hover">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style="background: rgba(227, 252, 135, 0.2);"><span class="text-3xl">💡</span>
+       </div>
+       <h4 class="font-space font-bold text-lg mb-2">Creative Ideas &amp; Concepts</h4>
+       <p class="text-sm opacity-70" style="color: #C0E0FF;">Turning abstract thoughts into tangible visions</p>
+      </div>
+      <div class="glass rounded-2xl p-8 text-center card-hover">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style="background: rgba(255, 178, 247, 0.2);"><span class="text-3xl">🎨</span>
+       </div>
+       <h4 class="font-space font-bold text-lg mb-2">Branding &amp; Design</h4>
+       <p class="text-sm opacity-70" style="color: #C0E0FF;">Content, visual identity, and project aesthetics</p>
+      </div>
+      <div class="glass rounded-2xl p-8 text-center card-hover">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style="background: rgba(171, 157, 255, 0.2);"><span class="text-3xl">✨</span>
+       </div>
+       <h4 class="font-space font-bold text-lg mb-2">Meaningful Experiences</h4>
+       <p class="text-sm opacity-70" style="color: #C0E0FF;">Things that make people feel something special</p>
+      </div>
+     </div><!-- Skills & Expertise -->
+     <div class="reveal">
+      <h3 class="font-space text-2xl font-bold mb-8 text-center" style="color: #FFB2F7;">Skills &amp; Expertise</h3>
+      <div class="grid md:grid-cols-2 gap-8"><!-- Design Skills -->
+       <div class="glass rounded-2xl p-8">
+        <h4 class="font-space font-bold text-lg mb-6" style="color: #E3FC87;">Design &amp; Creative</h4>
+        <div class="space-y-4">
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Visual Identity &amp; Branding</span> <span class="text-sm opacity-70">Advanced</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 90%; background: linear-gradient(90deg, #E3FC87, #88A2FF);"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Graphic Design</span> <span class="text-sm opacity-70">Advanced</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 85%; background: linear-gradient(90deg, #FFB2F7, #AB9DFF);"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Content Creation</span> <span class="text-sm opacity-70">Intermediate</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 80%; background: linear-gradient(90deg, #88A2FF, #AB9DFF);"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Typography &amp; Layout</span> <span class="text-sm opacity-70">Advanced</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 88%; background: linear-gradient(90deg, #E3FC87, #FFB2F7);"></div>
+          </div>
+         </div>
+        </div>
+       </div><!-- Community & Leadership -->
+       <div class="glass rounded-2xl p-8">
+        <h4 class="font-space font-bold text-lg mb-6" style="color: #FFB2F7;">Community &amp; Leadership</h4>
+        <div class="space-y-4">
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Community Management</span> <span class="text-sm opacity-70">Advanced</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 92%; background: linear-gradient(90deg, #FFB2F7, #88A2FF);"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Event Planning</span> <span class="text-sm opacity-70">Advanced</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 87%; background: linear-gradient(90deg, #AB9DFF, #E3FC87);"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Collaboration &amp; Facilitation</span> <span class="text-sm opacity-70">Advanced</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 90%; background: linear-gradient(90deg, #E3FC87, #AB9DFF);"></div>
+          </div>
+         </div>
+         <div>
+          <div class="flex justify-between mb-2"><span class="text-sm font-medium">Strategic Planning</span> <span class="text-sm opacity-70">Intermediate</span>
+          </div>
+          <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+           <div class="h-full rounded-full" style="width: 78%; background: linear-gradient(90deg, #88A2FF, #FFB2F7);"></div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Tools & Software -->
+     <div class="mt-16 reveal">
+      <h3 class="font-space text-xl font-bold mb-8 text-center" style="color: #AB9DFF;">Tools I Use</h3>
+      <div class="glass rounded-2xl p-8">
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+         <div class="w-16 h-16 mx-auto rounded-xl flex items-center justify-center mb-3" style="background: rgba(227, 252, 135, 0.2);"><span class="text-2xl">🎨</span>
+         </div>
+         <p class="font-medium text-sm">Ibis Paint X</p>
+         <p class="text-xs opacity-60 mt-1">Graphic Design, Illustrator</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 mx-auto rounded-xl flex items-center justify-center mb-3" style="background: rgba(255, 178, 247, 0.2);"><span class="text-2xl">✏️</span>
+         </div>
+         <p class="font-medium text-sm">Photopea</p>
+         <p class="text-xs opacity-60 mt-1">Mockup Design</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 mx-auto rounded-xl flex items-center justify-center mb-3" style="background: rgba(171, 157, 255, 0.2);"><span class="text-2xl">📸</span>
+         </div>
+         <p class="font-medium text-sm">Canva</p>
+         <p class="text-xs opacity-60 mt-1">Quick Designs</p>
+        </div>
+        <div class="text-center">
+         <div class="w-16 h-16 mx-auto rounded-xl flex items-center justify-center mb-3" style="background: rgba(136, 162, 255, 0.2);"><span class="text-2xl">📊</span>
+         </div>
+         <p class="font-medium text-sm">Notion</p>
+         <p class="text-xs opacity-60 mt-1">Planning &amp; Docs</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Journey Section -->
+   <section id="journey" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-16 reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ MY STORY</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold mb-4">My Journey</h2>
+      <p class="opacity-70" style="color: #FFB2F7;">Not Perfect, But Real</p>
+     </div><!-- Timeline -->
+     <div class="relative pl-12 reveal">
+      <div class="timeline-line"></div><!-- Journey Item 1 -->
+      <div class="relative pb-12">
+       <div class="timeline-dot" style="top: 8px;"></div>
+       <div class="glass rounded-2xl overflow-hidden ml-4">
+        <div class="grid md:grid-cols-2 gap-0">
+         <div class="order-2 md:order-1 p-6">
+          <h4 class="font-space font-bold text-xl mb-2" style="color: #E3FC87;">Started with Curiosity</h4>
+          <p class="opacity-80 leading-relaxed" style="color: #C0E0FF;">Ketertarikanku berawal dari desain dan estetika—bagaimana visual, detail, dan komposisi dapat menyampaikan makna tanpa banyak kata. Dari sana, aku belajar bahwa proses kreatif bukan hanya soal hasil akhir, tetapi juga tentang cara berpikir dan kepekaan terhadap sekitar. Saya mendesain dengan ciri khas sendiri.</p>
+         </div>
+         <div class="order-1 md:order-2 aspect-[4/3] md:aspect-auto relative image-placeholder overflow-hidden group"><img src="YOUR_JOURNEY_1_IMAGE_URL" alt="Started with Curiosity" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6" style="display: none;">
+           <svg class="w-12 h-12 mb-2 opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+           </svg>
+           <p class="text-xs opacity-70">Add journey image</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Journey Item 2 -->
+      <div class="relative pb-12">
+       <div class="timeline-dot" style="top: 8px;"></div>
+       <div class="glass rounded-2xl overflow-hidden ml-4">
+        <div class="grid md:grid-cols-2 gap-0">
+         <div class="aspect-[4/3] md:aspect-auto relative image-placeholder overflow-hidden group"><img src="YOUR_JOURNEY_2_IMAGE_URL" alt="Build Community with My Partner" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6" style="display: none;">
+           <svg class="w-12 h-12 mb-2 opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+           </svg>
+           <p class="text-xs opacity-70">Add journey image</p>
+          </div>
+         </div>
+         <div class="p-6">
+          <h4 class="font-space font-bold text-xl mb-2" style="color: #FFB2F7;">Build Community with My Partner</h4>
+          <div class="flex flex-wrap gap-2 mb-4"><span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(171, 157, 255, 0.3); color: #AB9DFF;">@mochiguri</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(227, 252, 135, 0.3); color: #E3FC87;">@jelajahlembar.id</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(255, 178, 247, 0.3); color: #FFB2F7;">@mahardikasmasa</span>
+          </div>
+          <p class="opacity-80 leading-relaxed" style="color: #C0E0FF;">Ketertarikanku berawal dari desain dan estetika—bagaimana visual, detail, dan komposisi dapat menyampaikan makna tanpa banyak kata. Dari sana, aku belajar bahwa proses kreatif bukan hanya soal hasil akhir, tetapi juga tentang cara berpikir dan kepekaan terhadap sekitar.</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Journey Item 3 -->
+      <div class="relative">
+       <div class="timeline-dot" style="top: 8px;"></div>
+       <div class="glass rounded-2xl overflow-hidden ml-4">
+        <div class="grid md:grid-cols-2 gap-0">
+         <div class="order-2 md:order-1 p-6">
+          <h4 class="font-space font-bold text-xl mb-2" style="color: #88A2FF;">Saat Ini &amp; Visi</h4>
+          <p class="opacity-80 leading-relaxed" style="color: #C0E0FF;">Kini, aku berfokus pada pengembangan ide dan komunitas yang berkelanjutan. Dengan visi menciptakan lingkungan yang inklusif dan berdampak, aku ingin terus menumbuhkan ruang di mana kreativitas, kolaborasi, dan pertumbuhan dapat berjalan beriringan.</p>
+         </div>
+         <div class="order-1 md:order-2 aspect-[4/3] md:aspect-auto relative image-placeholder overflow-hidden group"><img src="YOUR_JOURNEY_3_IMAGE_URL" alt="Saat Ini &amp; Visi" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6" style="display: none;">
+           <svg class="w-12 h-12 mb-2 opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+           </svg>
+           <p class="text-xs opacity-70">Add journey image</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Values & Principles Section -->
+   <section class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16 reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ MY PRINCIPLES</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold mb-4">What I Believe In</h2>
+      <p class="opacity-70 max-w-2xl mx-auto" style="color: #C0E0FF;">Nilai-nilai yang menjadi fondasi dalam setiap karya dan kolaborasi</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8 reveal">
+      <div class="glass rounded-2xl p-8 card-hover">
+       <div class="flex items-start gap-4 mb-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(227, 252, 135, 0.2);"><span class="text-2xl">🎯</span>
+        </div>
+        <div>
+         <h4 class="font-space font-bold text-lg mb-2" style="color: #E3FC87;">Intentionality Over Perfection</h4>
+         <p class="text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Setiap keputusan desain harus punya alasan. Aku percaya bahwa karya yang baik bukan soal sempurna, tapi soal disengaja—memahami konteks, tujuan, dan dampaknya.</p>
+        </div>
+       </div>
+      </div>
+      <div class="glass rounded-2xl p-8 card-hover">
+       <div class="flex items-start gap-4 mb-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(255, 178, 247, 0.2);"><span class="text-2xl">🌱</span>
+        </div>
+        <div>
+         <h4 class="font-space font-bold text-lg mb-2" style="color: #FFB2F7;">Growth Through Collaboration</h4>
+         <p class="text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Ide terbaik lahir dari diskusi dan perspektif beragam. Aku menikmati proses belajar bersama dan menciptakan ruang di mana semua orang bisa berkontribusi.</p>
+        </div>
+       </div>
+      </div>
+      <div class="glass rounded-2xl p-8 card-hover">
+       <div class="flex items-start gap-4 mb-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(171, 157, 255, 0.2);"><span class="text-2xl">💫</span>
+        </div>
+        <div>
+         <h4 class="font-space font-bold text-lg mb-2" style="color: #AB9DFF;">Details That Matter</h4>
+         <p class="text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Aku peduli pada hal-hal kecil yang sering terlewat—spacing yang tepat, hierarchy yang jelas, warna yang konsisten. Detail menciptakan pengalaman yang berkesan.</p>
+        </div>
+       </div>
+      </div>
+      <div class="glass rounded-2xl p-8 card-hover">
+       <div class="flex items-start gap-4 mb-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(136, 162, 255, 0.2);"><span class="text-2xl">✨</span>
+        </div>
+        <div>
+         <h4 class="font-space font-bold text-lg mb-2" style="color: #88A2FF;">Create Meaningful Impact</h4>
+         <p class="text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Bukan sekadar membuat yang 'terlihat bagus', tapi menciptakan sesuatu yang benar-benar berguna dan bermakna bagi orang lain—itu yang aku kejar.</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section class="py-24 px-6 relative overflow-hidden">
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent, rgba(255, 178, 247, 0.05), transparent);"></div>
+    <div class="max-w-6xl mx-auto relative">
+     <div class="text-center mb-16 reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ KIND WORDS</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold">What People Say</h2>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6 reveal">
+      <div class="glass rounded-2xl p-6 card-hover">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold" style="background: linear-gradient(135deg, #E3FC87, #88A2FF); color: #253A82;">
+         A
+        </div>
+        <div>
+         <p class="font-space font-bold text-sm">Alex</p>
+         <p class="text-xs opacity-60">Community Member</p>
+        </div>
+       </div>
+       <p class="text-sm opacity-90 leading-relaxed italic" style="color: #C0E0FF;">"Chanya punya kemampuan luar biasa dalam menciptakan ruang yang nyaman bagi semua orang untuk berbagi ide. Sangat menginspirasi!"</p>
+      </div>
+      <div class="glass rounded-2xl p-6 card-hover">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold" style="background: linear-gradient(135deg, #FFB2F7, #AB9DFF); color: #253A82;">
+         R
+        </div>
+        <div>
+         <p class="font-space font-bold text-sm">Rara</p>
+         <p class="text-xs opacity-60">Design Collaborator</p>
+        </div>
+       </div>
+       <p class="text-sm opacity-90 leading-relaxed italic" style="color: #C0E0FF;">"Detail-oriented dan sangat thoughtful dalam setiap keputusan desain. Bekerja dengan Chanya selalu jadi pengalaman belajar yang menyenangkan."</p>
+      </div>
+      <div class="glass rounded-2xl p-6 card-hover">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold" style="background: linear-gradient(135deg, #88A2FF, #AB9DFF); color: #253A82;">
+         D
+        </div>
+        <div>
+         <p class="font-space font-bold text-sm">Dimas</p>
+         <p class="text-xs opacity-60">Event Partner</p>
+        </div>
+       </div>
+       <p class="text-sm opacity-90 leading-relaxed italic" style="color: #C0E0FF;">"Organisasi event bareng Chanya selalu smooth dan well-planned. Dia paham betul gimana bikin acara yang engaging dan memorable."</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Works Section -->
+   <section id="works" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16 reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ PORTFOLIO</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold mb-4">Highlighted Works</h2>
+      <p class="opacity-70 max-w-2xl mx-auto" style="color: #C0E0FF;">Beberapa karya yang merepresentasikan cara berpikirku dalam mengolah ide, visual, dan pesan.</p>
+     </div><!-- Selected Creative Projects -->
+     <div class="mb-16 reveal">
+      <h3 class="font-space text-xl font-bold mb-2" style="color: #E3FC87;">Selected Creative Projects</h3>
+      <p class="opacity-70 mb-8 max-w-2xl" style="color: #C0E0FF;">Pengembangan konsep visual dan identitas yang berfokus pada cerita, detail, serta konsistensi.</p>
+      <div class="grid md:grid-cols-3 gap-6"><!-- Project Card 1 --> <a href="https://www.instagram.com/merch.smasa64/" target="_blank" rel="noopener noreferrer" class="card-hover rounded-2xl overflow-hidden group block">
+        <div class="aspect-[4/3] relative work-card-placeholder"><img src="card1.PNG" alt="Project 1" loading="lazy" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+         <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4" style="display: none;">
+          <svg class="w-12 h-12 mb-2 opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+          </svg>
+          <p class="text-xs opacity-70">Add project image URL</p>
+         </div>
+         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5">
+          <h5 class="font-space font-bold text-lg mb-1" style="color: #E3FC87;">Brand Identity Design</h5>
+          <p class="text-sm opacity-90 mb-3">Visual concept &amp; storytelling for modern brand merchandise SMASAMETA 64</p>
+          <div class="flex items-center gap-2 font-medium text-sm" style="color: #FFB2F7;"><span>View Project</span>
+           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+           </svg>
+          </div>
+         </div>
+        </div></a> <!-- Project Card 2 --> <a href="#" target="_blank" rel="noopener noreferrer" class="card-hover rounded-2xl overflow-hidden group block">
+        <div class="aspect-[4/3] relative work-card-placeholder"><img src="YOUR_PROJECT_2_IMAGE_URL" alt="Project 2" loading="lazy" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+         <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4" style="display: none;">
+          <svg class="w-12 h-12 mb-2 opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+          </svg>
+          <p class="text-xs opacity-70">Add project image URL</p>
+         </div>
+         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5">
+          <h5 class="font-space font-bold text-lg mb-1" style="color: #E3FC87;">Creative Campaign</h5>
+          <p class="text-sm opacity-90 mb-3">Social media content &amp; visual direction</p>
+          <div class="flex items-center gap-2 font-medium text-sm" style="color: #FFB2F7;"><span>View Project</span>
+           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+           </svg>
+          </div>
+         </div>
+        </div></a> <!-- Project Card 3 --> <a href="#" target="_blank" rel="noopener noreferrer" class="card-hover rounded-2xl overflow-hidden group block">
+        <div class="aspect-[4/3] relative work-card-placeholder"><img src="YOUR_PROJECT_3_IMAGE_URL" alt="Project 3" loading="lazy" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+         <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4" style="display: none;">
+          <svg class="w-12 h-12 mb-2 opacity-50" fill="currentColor" viewbox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+          </svg>
+          <p class="text-xs opacity-70">Add project image URL</p>
+         </div>
+         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-5">
+          <h5 class="font-space font-bold text-lg mb-1" style="color: #E3FC87;">Editorial Design</h5>
+          <p class="text-sm opacity-90 mb-3">Layout &amp; typography for digital publication</p>
+          <div class="flex items-center gap-2 font-medium text-sm" style="color: #FFB2F7;"><span>View Project</span>
+           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+           </svg>
+          </div>
+         </div>
+        </div></a>
+      </div>
+     </div><!-- Community Highlights -->
+     <div class="reveal">
+      <h3 class="font-space text-xl font-bold mb-2" style="color: #FFB2F7;">Highlight Aktivitas Komunitas</h3>
+      <p class="opacity-70 mb-8" style="color: #C0E0FF;">Ruang di mana ide berkembang melalui kolaborasi dan kebersamaan.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+       <div class="glass rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(227, 252, 135, 0.2);"><span class="text-2xl">🗣️</span>
+        </div>
+        <h4 class="font-space font-bold mb-2">Creative Sharing Sessions</h4>
+        <p class="text-sm opacity-70" style="color: #C0E0FF;">Sesi diskusi dan berbagi yang membuka ruang aman bagi anggota untuk belajar, bertukar perspektif, dan mengembangkan potensi kreatif.</p>
+       </div>
+       <div class="glass rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(255, 178, 247, 0.2);"><span class="text-2xl">🤝</span>
+        </div>
+        <h4 class="font-space font-bold mb-2">Collaborative Projects</h4>
+        <p class="text-sm opacity-70" style="color: #C0E0FF;">Inisiatif kolaboratif yang mempertemukan individu dengan latar belakang berbeda untuk menciptakan karya bersama.</p>
+       </div>
+       <div class="glass rounded-2xl p-6 card-hover">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: rgba(171, 157, 255, 0.2);"><span class="text-2xl">🌱</span>
+        </div>
+        <h4 class="font-space font-bold mb-2">Community Growth</h4>
+        <p class="text-sm opacity-70" style="color: #C0E0FF;">Membangun lingkungan yang suportif dan inklusif agar setiap anggota merasa didengar dan terdorong untuk terus berkarya.</p>
+       </div>
+      </div>
+     </div><!-- Impact Stats -->
+     <div class="mt-16 glass rounded-2xl p-8 reveal">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+       <div class="text-center">
+        <p class="font-space text-lg font-bold mb-1" style="color: #E3FC87;">Works</p>
+        <p class="text-sm opacity-70" style="color: #C0E0FF;">Visual concepts · Identity · Story-driven design</p>
+       </div>
+       <div class="text-center">
+        <p class="font-space text-lg font-bold mb-1" style="color: #FFB2F7;">Community</p>
+        <p class="text-sm opacity-70" style="color: #C0E0FF;">Sharing sessions · Creative collaboration · Safe space</p>
+       </div>
+       <div class="text-center col-span-2 md:col-span-1">
+        <p class="font-space text-lg font-bold mb-1" style="color: #88A2FF;">Impact</p>
+        <p class="text-sm opacity-70" style="color: #C0E0FF;">50+ members · 5+ events · 2+ collaborations</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- FAQ Section -->
+   <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-16 reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ QUESTIONS</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold">Frequently Asked</h2>
+     </div>
+     <div class="space-y-4 reveal">
+      <details class="glass rounded-2xl p-6 group cursor-pointer"><summary class="font-space font-bold text-lg flex items-center justify-between list-none cursor-pointer"> <span style="color: #E3FC87;">Bagaimana cara kerja sama dengan kamu?</span>
+        <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></summary>
+       <p class="mt-4 text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Mulai dengan kontak lewat WhatsApp atau Instagram. Kita bisa diskusi dulu tentang project scope, timeline, dan ekspektasi. Aku terbuka untuk berbagai jenis kolaborasi—dari design project hingga community building.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group cursor-pointer"><summary class="font-space font-bold text-lg flex items-center justify-between list-none cursor-pointer"> <span style="color: #FFB2F7;">Apa yang membedakan approach-mu dalam design?</span>
+        <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></summary>
+       <p class="mt-4 text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Aku fokus pada intention—setiap elemen harus punya alasan. Bukan sekadar membuat yang 'cantik', tapi memahami konteks, audience, dan tujuan. Detail, consistency, dan storytelling adalah prioritas.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group cursor-pointer"><summary class="font-space font-bold text-lg flex items-center justify-between list-none cursor-pointer"> <span style="color: #AB9DFF;">Apakah kamu menerima project freelance?</span>
+        <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></summary>
+       <p class="mt-4 text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Ya! Aku terbuka untuk project-based collaboration, terutama yang berkaitan dengan visual identity, branding, content creation, atau community initiatives. Mari diskusi lebih lanjut tentang project-mu.</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group cursor-pointer"><summary class="font-space font-bold text-lg flex items-center justify-between list-none cursor-pointer"> <span style="color: #88A2FF;">Bagaimana cara bergabung dengan komunitas yang kamu kelola?</span>
+        <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></summary>
+       <p class="mt-4 text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Kamu bisa follow Instagram @jelajahlembar.id atau @mochiguri untuk update terbaru tentang event dan activities. Kami terbuka untuk siapa saja yang ingin belajar, berbagi, dan berkembang bersama!</p>
+      </details>
+      <details class="glass rounded-2xl p-6 group cursor-pointer"><summary class="font-space font-bold text-lg flex items-center justify-between list-none cursor-pointer"> <span style="color: #E3FC87;">Berapa lama biasanya timeline untuk project design?</span>
+        <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg></summary>
+       <p class="mt-4 text-sm opacity-80 leading-relaxed" style="color: #C0E0FF;">Tergantung scope project—untuk brand identity biasanya 2-4 minggu, content creation bisa lebih cepat. Aku selalu prioritaskan quality over speed, tapi akan komunikasikan timeline yang realistis di awal.</p>
+      </details>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+     <div class="reveal">
+      <p class="text-sm font-medium tracking-widest mb-4" style="color: #E3FC87;">✦ GET IN TOUCH</p>
+      <h2 class="font-space text-3xl md:text-4xl font-bold mb-6">Let's Collaborate</h2>
+      <p id="contact-message" class="text-lg opacity-80 mb-10 max-w-xl mx-auto" style="color: #C0E0FF;">Ide terbaik sering kali lahir dari percakapan sederhana. Jika kamu ingin berdiskusi atau berkolaborasi, aku siap mendengarkan.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-lg" style="background: #E3FC87; color: #253A82;">
+        <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg> Say Hello! </a>
+      </div><!-- Social Links -->
+      <div class="flex justify-center gap-6"><a href="https://instagram.com/chanyaia" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform" style="color: #FFB2F7;">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a> <a href="https://instagram.com/delicatestdiou" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform" style="color: #E3FC87;">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+        </svg></a> <a href="https://instagram.com/jelajahlembar.id" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full glass flex items-center justify-center hover:scale-110 transition-transform" style="color: #AB9DFF;">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg></a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 border-t border-white/10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+     <p class="text-sm opacity-60">© 2024 Chanya. Made with 💜</p>
+     <p class="text-sm opacity-60">Designed with creativity &amp; intention</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      headline: "Not Just What I Do, But Why.",
+      subheadline: "Satu halaman untuk mengenalku, caraku berpikir, dan coretan yang kubawa di setiap karyaku.",
+      name: "Chanya",
+      tagline: "Creative • Organized • Detail-Oriented",
+      contact_text: "Ide terbaik sering kali lahir dari percakapan sederhana. Jika kamu ingin berdiskusi atau berkolaborasi, aku siap mendengarkan.",
+      primary_color: "#E3FC87",
+      secondary_color: "#FFB2F7",
+      accent_color: "#88A2FF",
+      text_color: "#C0E0FF",
+      bg_color: "#253A82"
+    };
+
+    async function onConfigChange(config) {
+      const headline = document.getElementById('hero-headline');
+      if (headline) {
+        headline.innerHTML = `${config.headline || defaultConfig.headline}<br><span style="background: linear-gradient(90deg, #E3FC87, #88A2FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">But Why.</span>`;
+      }
+      
+      const subheadline = document.getElementById('hero-subheadline');
+      if (subheadline) {
+        subheadline.textContent = config.subheadline || defaultConfig.subheadline;
+      }
+      
+      const name = document.getElementById('about-name');
+      if (name) {
+        name.textContent = config.name || defaultConfig.name;
+      }
+      
+      const tagline = document.getElementById('about-tagline');
+      if (tagline) {
+        tagline.textContent = config.tagline || defaultConfig.tagline;
+      }
+      
+      const contactMsg = document.getElementById('contact-message');
+      if (contactMsg) {
+        contactMsg.textContent = config.contact_text || defaultConfig.contact_text;
+      }
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.bg_color || defaultConfig.bg_color,
+            set: (value) => {
+              config.bg_color = value;
+              window.elementSdk.setConfig({ bg_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              config.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["headline", config.headline || defaultConfig.headline],
+        ["subheadline", config.subheadline || defaultConfig.subheadline],
+        ["name", config.name || defaultConfig.name],
+        ["tagline", config.tagline || defaultConfig.tagline],
+        ["contact_text", config.contact_text || defaultConfig.contact_text]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Scroll reveal animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 150;
+        
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bfd9364c7ce527e',t:'MTc2ODczMzg5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
